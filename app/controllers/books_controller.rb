@@ -1,44 +1,42 @@
 class BooksController < ApplicationController
   before_action :require_logged_in
 
-    # def index
-    #   @attractions = Attraction.all
-    #   @admin = is_admin?
-    # end
-    #
-    # def show
-    #   @attraction = Attraction.find_by_id(params[:id])
-    #   @admin = is_admin?
-    # end
-    #
-    # def new
-    #   @attraction = Attraction.new
-    # end
-    #
-    # def create
-    #   @attraction = Attraction.create(attraction_params)
-    #   @author.books << @book
-    #   redirect_to attraction_path(@attraction)
-    # end
-    #
-    # def edit
-    #   @attraction = Attraction.find_by_id(params[:id])
-    # end
-    #
-    # def update
-    #   @attraction = Attraction.find_by_id(params[:id])
-    #   @attraction.update(attraction_params)
-    #   if @attraction.save
-    #     redirect_to attraction_path
-    #   else
-    #     render :edit
-    #   end
-    # end
-    #
-    # private
-    #
-    # def attraction_params
-    #   params.require(:attraction).permit(:name, :tickets, :nausea_rating, :happiness_rating, :min_height)
-    # end
+    def index
+      @books = Book.all
+    end
+
+    def show
+      @book = Book.find_by_id(params[:id])
+    end
+
+    def new
+      @book = Book.new
+    end
+
+    def create
+      @book = Book.create(book_params)
+      #@author.books << @book
+      redirect_to book_path(@book)
+    end
+
+    def edit
+      @book = Book.find_by_id(params[:id])
+    end
+
+    def update
+      @book = Book.find_by_id(params[:id])
+      @book.update(book_params)
+      if @book.save
+        redirect_to book_path
+      else
+        render :edit
+      end
+    end
+
+    private
+
+    def book_params
+      params.require(:book).permit(:title, :genre, :page_count, :author)
+    end
 
 end
