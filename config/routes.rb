@@ -4,7 +4,7 @@ Rails.application.routes.draw do
    post '/signin' => 'sessions#create'
    delete '/signout' => 'sessions#destroy'
 
-   resources :users
+   resources :users, only: [:show, :new, :create]
    resources :books
    resources :user_books, only: [:new, :create]
 
