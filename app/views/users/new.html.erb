@@ -1,13 +1,32 @@
+
 <% if current_user.blank? %>
   <h1>Create Account with Facebook</h1>
    <%= link_to('Login with Facebook', '/auth/facebook') %>
+
   <h2>Or create account here:</h2>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %>
+        prohibited this post from being saved:
+      </h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%= form_for @user do |f| %>
     Name: <%= f.text_field :name %> <br>
     Email: <%= f.text_field :email %> <br>
     Password: <%= f.password_field :password %> <br>
     <%= f.submit "Create Account" %>
   <% end %>
+
 <% else %>
   <p>
     You are signed in as <%= current_user.name %>.
