@@ -4,5 +4,6 @@ class Book < ApplicationRecord
   has_many :users, through: :user_books
 
   validates :title, uniqueness: true
+  validates :title, presence: true
 
 end
