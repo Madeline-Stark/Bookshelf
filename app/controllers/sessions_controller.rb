@@ -4,12 +4,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if auth['uid']
+    if request.env['omniauth.auth']
       @user = User.find_or_create_by(uid: auth['uid']) do |u|
         u.name = auth['info']['name']
         u.email = auth['info']['email']
         u.image = auth['info']['image']
       end
+      @user.password = SecureRandom.hex(9)
+      @user.save
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     elsif @user = User.find_by(email: params[:user][:email])

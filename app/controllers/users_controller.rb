@@ -20,7 +20,6 @@ class UsersController < ApplicationController
       @books = @user.books
   end
 
-  end
 
   private
 
