@@ -2,15 +2,24 @@ class BooksController < ApplicationController
   before_action :require_logged_in
 
     def index
-      @books = Book.all
+      if params[:author_id]
+        @books = Author.find(params[:author_id]).books
+      else
+        @books = Book.all
+      end
     end
 
     def show
       @book = Book.find_by_id(params[:id])
+      @author = @book.author
     end
 
     def new
-      @book = Book.new
+      if params[:author_id] && !Author.exists?(params[:author_id])
+        redirect_to authors_path, alert: "No such author."
+      else
+        @book = Book.new(author_id: params[:author_id])
+      end
     end
 
     def create
@@ -20,14 +29,24 @@ class BooksController < ApplicationController
     end
 
     def edit
-      @book = Book.find_by_id(params[:id])
+      if params[:author_id]
+        author = Author.find_by(id: params[:author_id])
+        if author.nil?
+          redirect_to authors_path, alert: "No such author."
+        else
+          @book = author.books.find_by(id: params[:id])
+          redirect_to author_books_path(author), alert: "No such book." if @book.nil?
+        end
+      else
+        @book = Book.find(params[:id])
+      end
     end
 
     def update
       @book = Book.find_by_id(params[:id])
       @book.update(book_params)
       if @book.save
-        redirect_to book_path
+        redirect_to book_path(@book)
       else
         render :edit
       end
@@ -36,7 +55,7 @@ class BooksController < ApplicationController
     private
 
     def book_params
-      params.require(:book).permit(:title, :genre, :page_count, :author)
+      params.require(:book).permit(:title, :genre, :page_count, :author_id)
     end
 
 end
