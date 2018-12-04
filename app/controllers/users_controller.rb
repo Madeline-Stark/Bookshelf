@@ -20,19 +20,6 @@ class UsersController < ApplicationController
       @books = @user.books
   end
 
-  def edit
-    @user = User.find_by_id(params[:id])
-  end
-
-  def update
-    @user = User.find_by_id(params[:id])
-    @user.update(user_params)
-    if @user.save
-      redirect_to user_path
-    else
-      render :edit
-    end
-
   end
 
   private
