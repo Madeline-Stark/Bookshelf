@@ -1,12 +1,12 @@
-<% if @post.errors.any? %>
+<% if @book.errors.any? %>
   <div id="error_explanation">
     <h2>
-      <%= pluralize(@post.errors.count, "error") %>
+      <%= pluralize(@book.errors.count, "error") %>
       prohibited this post from being saved:
     </h2>
 
     <ul>
-    <% @post.errors.full_messages.each do |msg| %>
+    <% @book.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
@@ -17,6 +17,6 @@
 Title: <%= f.text_field :title %> <br>
 Genre: <%= f.text_field :genre %> <br>
 Page Count: <%= f.text_field :page_count %> <br>
-by <%= author_id_field(book) %>
+by <%= author_id_field(@book) %>
   <%= f.submit "Submit" %>
 <% end %>
