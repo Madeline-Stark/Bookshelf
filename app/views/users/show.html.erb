@@ -1,6 +1,7 @@
-Name: <%= @user.name %> <br>
 
-Your books:
-<% @books.each do |book| %>
-<%= book.title %>
-<% end %>
+<%= @user.name %>'s books:
+<ul><% @books.each do |book| %>
+<li><%= link_to book.title, book_path(book) %></li>
+<% end %></ul>
+<br>
+<%= link_to "New Book", new_book_path %>

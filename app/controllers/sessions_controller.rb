@@ -1,9 +1,10 @@
 class SessionsController < ApplicationController
   def new
+    @user = User.new
   end
 
   def create
-    @user = User.find_by(name: params[:user][:name])
+    @user = User.find_by(email: params[:user][:email])
     if !@user.authenticate(params[:user][:password])
         redirect_to login_path
     else

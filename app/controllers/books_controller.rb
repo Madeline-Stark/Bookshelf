@@ -24,7 +24,9 @@ class BooksController < ApplicationController
 
     def create
       @book = Book.create(book_params)
-      #@author.books << @book
+      @author = current_user
+      @author.books << @book
+      @author.save
       redirect_to book_path(@book)
     end
 
