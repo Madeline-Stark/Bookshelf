@@ -1,5 +1,16 @@
-<%= form_for @user, url: {action: "create", controller: "sessions"} do |f| %>
-  Email: <%= f.text_field :email %><br>
-  Password: <%= f.password_field :password %>
-  <%= f.submit "Sign In" %>
+
+
+<% if current_user.blank? %>
+  <h1>Please Sign In</h1>
+   <%= link_to('Login with Facebook', '/auth/facebook') %>
+  <h2>Or sign in here:</h2>
+  <%= form_for @user, url: {action: "create", controller: "sessions"} do |f| %>
+    Email: <%= f.text_field :email %><br>
+    Password: <%= f.password_field :password %>
+    <%= f.submit "Sign In" %>
+  <% end %>
+<% else %>
+  <p>
+    You are signed in as <%= current_user.name %>.
+  </p>
 <% end %>
