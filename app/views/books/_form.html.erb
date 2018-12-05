@@ -20,6 +20,6 @@ Page Count: <%= f.text_field :page_count %> <br>
 <% f.fields_for :user_books, @book.user_books do |ub| %>
   Finished? <%= ub.check_box :finished %>
 <% end %>
-by <%= author_id_field(@book) %>
+by <%= f.collection_select :author_id, Author.order(:name),:id,:name, include_blank: true %> <br>
   <%= f.submit "Submit" %>
 <% end %>
