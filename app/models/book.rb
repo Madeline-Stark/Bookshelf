@@ -6,4 +6,6 @@ class Book < ApplicationRecord
   validates :title, uniqueness: true
   validates :title, presence: true
 
+  accepts_nested_attributes_for :user_books
+
 end

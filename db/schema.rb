@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_12_03_203740) do
   create_table "user_books", force: :cascade do |t|
     t.integer "user_id"
     t.integer "book_id"
-    t.boolean "finished?"
+    t.boolean "finished"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
