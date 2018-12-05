@@ -19,7 +19,7 @@ class BooksController < ApplicationController
         redirect_to authors_path, alert: "No such author."
       else
         @book = Book.new(author_id: params[:author_id])
-        @book.user_books.build
+        @book.users_books.build
       end
     end
 
@@ -30,7 +30,7 @@ class BooksController < ApplicationController
         @user = current_user
         @user.books << @book
         @user.save
-        #need to save user_books? hidden_field in form?
+        #need to save users_books? hidden_field in form?
         redirect_to book_path(@book)
       else
         render :new

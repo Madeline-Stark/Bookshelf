@@ -27,20 +27,20 @@ ActiveRecord::Schema.define(version: 2018_12_03_203740) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_books", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "book_id"
-    t.boolean "finished"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
     t.string "uid"
     t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users_books", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "book_id"
+    t.boolean "finished"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
