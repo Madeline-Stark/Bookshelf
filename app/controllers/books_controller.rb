@@ -30,6 +30,7 @@ class BooksController < ApplicationController
         @user = current_user
         @user.books << @book
         @user.save
+        #need to save user_books? hidden_field in form?
         redirect_to book_path(@book)
       else
         render :new
