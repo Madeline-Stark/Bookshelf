@@ -19,7 +19,7 @@ class BooksController < ApplicationController
         redirect_to authors_path, alert: "No such author."
       else
         @book = Book.new(author_id: params[:author_id])
-        @book.users_books.build
+        @book.user_books.build
       end
     end
 
