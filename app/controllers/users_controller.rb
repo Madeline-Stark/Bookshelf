@@ -16,9 +16,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    #binding.pry
     @user = User.find_by_id(params[:id])
     @books = @user.books
+    @read_books = @user.user_books.read
+    @unread_books = @user.user_books.unread
   end
 
 

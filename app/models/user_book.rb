@@ -2,6 +2,13 @@ class UserBook < ApplicationRecord
   belongs_to :book
   belongs_to :user
 
-  scope :finished, -> { where(finished?: true)}
+  def self.read
+    where(finished: true)
+  end
+
+  def self.unread
+    where(finished: false)
+  end
+
 
 end
