@@ -18,5 +18,8 @@ Title: <%= f.text_field :title %> <br>
 Genre: <%= f.text_field :genre %> <br>
 Page Count: <%= f.text_field :page_count %> <br>
 by <%= author_id_field(@book) %>
+  <% f.fields_for :user_books do |ub| %>
+    <%= ub.check_box :finished? %>
+  <% end %>
   <%= f.submit "Submit" %>
 <% end %>

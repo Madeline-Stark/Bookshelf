@@ -19,6 +19,7 @@ class BooksController < ApplicationController
         redirect_to authors_path, alert: "No such author."
       else
         @book = Book.new(author_id: params[:author_id])
+        @book.user_books.build
       end
     end
 
@@ -32,7 +33,7 @@ class BooksController < ApplicationController
         redirect_to book_path(@book)
       else
         render :new
-      end 
+      end
     end
 
     def edit
@@ -62,7 +63,7 @@ class BooksController < ApplicationController
     private
 
     def book_params
-      params.require(:book).permit(:title, :genre, :page_count, :author_id)
+      params.require(:book).permit(:title, :genre, :page_count, :author_id, {user_books_attributes: [:finished?, :user_id, :book_id]})
     end
 
 end
