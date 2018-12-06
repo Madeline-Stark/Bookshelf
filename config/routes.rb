@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
 
    resources :users, only: [:show, :new, :create]
-   resources :user_books
+   resources :user_books, only: [:new, :create, :edit, :update, :destroy]
    resources :books
 
    resources :authors do
