@@ -14,12 +14,12 @@
 <% end %>
 
 <%= form_for @book do |f| %>
-Title: <%= f.text_field :title %> <br>
-Genre: <%= f.text_field :genre %> <br>
-Page Count: <%= f.text_field :page_count %> <br>
-<% f.fields_for :user_books, @book.user_books do |ub| %>
-  Finished? <%= ub.check_box :finished %>
-<% end %>
-by <%= f.collection_select :author_id, Author.order(:name),:id,:name, include_blank: true %> <br>
+  Title: <%= f.text_field :title %> <br>
+  Genre: <%= f.text_field :genre %> <br>
+  Page Count: <%= f.text_field :page_count %> <br>
+  by <%= f.collection_select :author_id, Author.order(:name),:id,:name, include_blank: true %> <br>
+    <%= f.fields_for :user_books do |ff| %>
+      Finished reading?  <%= ff.check_box :finished %>
+    <% end %>
   <%= f.submit "Submit" %>
 <% end %>

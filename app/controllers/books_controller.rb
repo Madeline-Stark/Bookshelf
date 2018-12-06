@@ -15,21 +15,28 @@ class BooksController < ApplicationController
     end
 
     def new
+
       if params[:author_id] && !Author.exists?(params[:author_id])
         redirect_to authors_path, alert: "No such author."
       else
         @book = Book.new(author_id: params[:author_id])
-        @book.user_books.build
+        @user_books = @book.user_books.build
+      #  @book.user_books << UserBook.new
+        #@user_books = @book.user_books.first
       end
     end
 
     def create
+      #binding.pry
       @book = Book.new(book_params)
 
       if @book.save
         @user = current_user
         @user.books << @book
         @user.save
+        @user_book = @user.user_books.last
+        @user_book.finished = book_params["user_books_attributes"]["finished"]
+        @user_book.save
         redirect_to book_path(@book)
       else
         render :new
