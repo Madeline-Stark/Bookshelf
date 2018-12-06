@@ -18,6 +18,7 @@
   Genre: <%= f.text_field :genre %> <br>
   Page Count: <%= f.text_field :page_count %> <br>
   by <%= f.collection_select :author_id, Author.order(:name),:id,:name, include_blank: true %> <br>
+  <%= link_to "Create New Author", new_author_path %> <br>
     <%= f.fields_for :user_books do |ff| %>
       Finished reading?  <%= ff.check_box :finished %>
     <% end %>
