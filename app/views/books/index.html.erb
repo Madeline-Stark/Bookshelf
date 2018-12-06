@@ -2,3 +2,5 @@
 <%= link_to book.title, book_path(book) %>
 by <%= link_to book.author.name, author_books_path(book.author) %><br>
 <% end %>
+<br>
+<%= link_to "Add Pre-existing Book To Your Reading Log.", new_user_book_path %>

@@ -2,4 +2,5 @@
 <%= @book.genre %> <br>
 <%= @book.page_count %> pages <br>
 by <%= link_to @author.name, author_path(@author) if @author%>
-(<%= link_to "Edit Book", edit_author_book_path(@author, @book) if @author %>)
+(<%= link_to "Edit Book", edit_author_book_path(@author, @book) if @author %>)<br>
+<%= link_to "All Books", books_path %>
