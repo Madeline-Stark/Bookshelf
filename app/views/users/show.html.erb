@@ -4,7 +4,8 @@
 Read:
 <ul><% @read_books.each do |rb| %>
 <li><%= link_to rb.book.title, book_path(rb.book) %></li>
-<li><%= link_to "Update Status", edit_user_book_path(rb) %></li><br>
+<li><%= link_to "Update Status", edit_user_book_path(rb) %></li>
+<li><%= link_to "Delete", rb, method: :delete, data: { confirm: "Really?" } %></li><br>
 <% end %></ul>
 <br>
 

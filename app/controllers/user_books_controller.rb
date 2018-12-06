@@ -1,5 +1,18 @@
 class UserBooksController < ApplicationController
 
+  def index
+    @user_books = UserBook.all
+  end
+
+  def new
+
+  end
+
+  def create
+
+  end
+
+
   def edit
     @user = current_user
     @user_book = UserBook.find_by(id: params[:id])
@@ -13,6 +26,12 @@ class UserBooksController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @user_book = UserBook.find_by(id: params[:id])
+    @user_book.destroy
+    redirect_to user_path(current_user)
   end
 
   private

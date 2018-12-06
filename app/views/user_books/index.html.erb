@@ -1,0 +1,4 @@
+<ul><% @user_books.each do |ub| %>
+  <li><%= ub.book.title %></li>
+  <li><%= link_to "Add to your books", user_book_path(ub) %></li><br>
+  <%end%></ul>
