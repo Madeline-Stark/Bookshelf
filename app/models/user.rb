@@ -7,6 +7,4 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :name, presence: true
 
-  accepts_nested_attributes_for :user_books
-
 end
