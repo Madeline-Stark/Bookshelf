@@ -17,7 +17,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
-    #@books = @user.books
     @user_books = @user.user_books
     @read_books = @user_books.read
     @unread_books = @user_books.unread
