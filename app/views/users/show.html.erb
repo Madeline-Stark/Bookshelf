@@ -4,12 +4,14 @@
 Read:
 <ul><% @read_books.each do |rb| %>
 <li><%= link_to rb.book.title, book_path(rb.book) %></li>
+<li><%= link_to "Update Status", edit_user_book_path(rb) %></li><br>
 <% end %></ul>
 <br>
 
 Currently Reading:
 <ul><% @unread_books.each do |ub| %>
 <li><%= link_to ub.book.title, book_path(ub.book) %></li>
+<li><%= link_to "Update Status", edit_user_book_path(ub) %></li><br>
 <% end %></ul>
 <br>
 
@@ -19,5 +21,4 @@ Currently Reading:
 
 
 
-<%= link_to "New Book", new_book_path %>
 <%= link_to "New Author", new_author_path %>

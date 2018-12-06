@@ -1,0 +1,5 @@
+Reading Log for <%= link_to @user_book.book.title, book_path(@user_book.book) %>
+<%= form_for @user_book do |f| %>
+  Finished reading?  <%= f.check_box :finished %>
+  <%= f.submit "Submit" %>
+<% end %>
