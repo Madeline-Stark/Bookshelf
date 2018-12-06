@@ -1,11 +1,12 @@
 class UserBooksController < ApplicationController
 
-  def index
-    @user_books = UserBook.all
-  end
 
   def new
-
+    #@user = current_user
+    #@book = Book.find_by_id(params[:id])
+    #@user_book = @book.user_books.build
+    #@user_books = UserBook.all
+    @books = Book.order("title")
   end
 
   def create

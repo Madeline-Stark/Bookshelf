@@ -1,0 +1,9 @@
+
+<% @books.each do |book| %>
+  <ul><li>Add <%= book.title %> to your reading list:</li>
+  <%= form_for :user_books do |f| %>
+    <li>Have you already finished this book?  <%= f.check_box :finished %></li>
+    <%= f.submit "Add Book" %>
+  <% end %></ul>
+  <br>
+<%end%>
