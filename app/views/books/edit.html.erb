@@ -1,3 +1,8 @@
 <h1> Edit Book: <h1>
 
-<%= render partial: "form" %>
+<%= render partial: "errors" %>
+
+<%= form_for @book do |f| %>
+  <%= render partial: "form", locals: {f: f} %>
+  <%= f.submit "Submit" %>
+<% end %>
