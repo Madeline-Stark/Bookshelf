@@ -8,20 +8,21 @@ Welcome to Bookshelf! You can use this app to track books you've read and are cu
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Clone the source locally:
 
-```ruby
-gem 'Bookshelf'
+```sh
+$ git clone https://github.com/Madeline-Stark/Bookshelf.git
+$ cd Bookshelf
+$ bundle install
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install Bookshelf
-
+Run migrations:
+```sh
+$ rake db:migrate
+```
+Host on local server:
+```sh
+$ thin start --ssl
+```
 
 ## Built With
 
