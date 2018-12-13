@@ -1,18 +1,19 @@
 
-<%= @user.name %>'s books:
+<h3><%= @user.name %>'s books:</h3>
 <br>
-Read:
+<h5>Read:</h5>
 <ul><% @read_books.each do |rb| %>
-<li><%= link_to rb.book.title, book_path(rb.book) %></li>
-<li><%= link_to "Update Status", edit_user_book_path(rb) %></li>
-<li><%= link_to "Delete", rb, method: :delete, data: { confirm: "Really?" } %></li><br>
+<li><h6><%= link_to rb.book.title, book_path(rb.book) %></h6></li>
+<%= link_to "Update Status", edit_user_book_path(rb) %> |
+<%= link_to "Delete", rb, method: :delete, data: { confirm: "Really?" } %><br>
 <% end %></ul>
 <br>
 
-Currently Reading:
+<h5>Currently Reading:</h5>
 <ul><% @unread_books.each do |ub| %>
-<li><%= link_to ub.book.title, book_path(ub.book) %></li>
-<li><%= link_to "Update Status", edit_user_book_path(ub) %></li><br>
+<li><h6><%= link_to ub.book.title, book_path(ub.book) %></h6></li>
+<%= link_to "Update Status", edit_user_book_path(ub) %> |
+<%= link_to "Delete", ub, method: :delete, data: { confirm: "Really?" } %><br>
 <% end %></ul>
 <br>
 
