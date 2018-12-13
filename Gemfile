@@ -5,6 +5,9 @@ ruby '2.3.3'
 
 gem 'pry'
 
+#for bootstrap
+gem 'bootstrap'
+
 #for omniauth
 gem 'omniauth'
 gem 'omniauth-facebook'
