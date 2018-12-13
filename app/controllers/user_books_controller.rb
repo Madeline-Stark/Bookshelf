@@ -7,11 +7,7 @@ class UserBooksController < ApplicationController
   end
 
   def create
-    @book = Book.find_by_id(params["user_books"]["book_id"])
-    current_user.books << @book
-    current_user.save
-    @user_book = current_user.user_books.last
-    @user_book.finished = params["user_books"]["finished"]
+    @user_book = UserBook.new(book_id: params["user_books"]["book_id"], user_id: current_user.id, finished: arams["user_books"]["finished"])
     @user_book.save
     redirect_to user_path(current_user)
   end
