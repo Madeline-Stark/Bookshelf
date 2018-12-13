@@ -5,7 +5,7 @@ Welcome to Bookshelf! You can use this app to track books you've read and are cu
 
 ## Demo
 
-[Bookshelf: A Rails Application](https://youtu.be/kgZhVZxqOsc)
+[Bookshelf: A Rails Application](https://youtu.be/5By9wDnMel4)
 
 ## Installation
 
