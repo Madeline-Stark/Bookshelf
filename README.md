@@ -4,7 +4,7 @@ Welcome to Bookshelf! You can use this app to track books you've read and are cu
 
 ## Demo
 
-[Youtube]https://youtu.be/kgZhVZxqOsc
+[Youtube](https://youtu.be/kgZhVZxqOsc)
 
 ## Installation
 
