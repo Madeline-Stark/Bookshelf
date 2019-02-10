@@ -3,11 +3,12 @@ class UserBooksController < ApplicationController
 
 
   def new
+    # test
     @books = Book.order("title")
   end
 
   def create
-    @user_book = UserBook.new(book_id: params["user_books"]["book_id"], user_id: current_user.id, finished: arams["user_books"]["finished"])
+    @user_book = UserBook.new(book_id: params["user_books"]["book_id"], user_id: current_user.id, finished: params["user_books"]["finished"])
     @user_book.save
     redirect_to user_path(current_user)
   end
