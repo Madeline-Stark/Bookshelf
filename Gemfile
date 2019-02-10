@@ -5,6 +5,8 @@ ruby '2.3.3'
 
 gem 'pry'
 
+gem 'active_model_serializers'
+
 #for bootstrap
 gem 'bootstrap'
 

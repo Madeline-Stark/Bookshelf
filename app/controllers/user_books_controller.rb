@@ -3,7 +3,6 @@ class UserBooksController < ApplicationController
 
 
   def new
-    # test message
     @books = Book.order("title")
   end
 
