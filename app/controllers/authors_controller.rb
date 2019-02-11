@@ -3,10 +3,12 @@ class AuthorsController < ApplicationController
 
   def show
     @author = Author.find(params[:id])
+    render json: @author, status: 200
   end
 
   def index
     @authors = Author.all
+    render json: @authors, status: 200
   end
 
   def new
@@ -17,10 +19,10 @@ class AuthorsController < ApplicationController
     @author = Author.new(author_params)
 
     if @author.save
-      redirect_to author_path(@author)
+      render json: @author, status: 201
     else
       render :new
-    end 
+    end
   end
 
   def edit
