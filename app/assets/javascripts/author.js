@@ -1,14 +1,35 @@
 
-// * prototypes-research-maybe just capitalize? or change first name to initial?
-// * loadAuthors
-// * loadAuthor
-// * loadBooks
 
 $(document).ready(function() {
   attachListeners();
 });
 
 function attachListeners() {
+  $('button#authors-data').on('click', function (event) {
+  		event.preventDefault()
+  		getAuthors()
+  	})
+
+  $('button#author-data').on('click', function (event) {
+    	event.preventDefault()
+    	getAuthor()
+    })
+
+  $('button#books-data').on('click', function (event) {
+      event.preventDefault()
+      getBook()
+    })
+}
+
+function getAuthors() {
+
+}
+
+function getAuthor() {
+
+}
+
+function getBooks() {
 
 }
 
