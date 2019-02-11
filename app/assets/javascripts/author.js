@@ -22,11 +22,12 @@ function attachListeners() {
 }
 
 function getAuthors() {
-
+  //replace link_to with button for authors!
+  //create button for getAuthor here!
 }
 
 function getAuthor() {
-
+  //create button for getBooks here!
 }
 
 function getBooks() {
@@ -41,6 +42,8 @@ class Author {
 	}
 
 	static newAuthorForm() {
+    //reread lab for this
+    //maybe make new Author form a button and make this a function outside of class
 		return (`
 		<strong>New artist form</strong>
 			<form>
