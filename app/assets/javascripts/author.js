@@ -24,19 +24,23 @@ function attachListeners() {
     event.preventDefault()
     newAuthorForm()
   })
+
+  $('button#clear').on('click', function (event) {
+    event.preventDefault()
+    resetPage()
+  })
 }
 
 function getAuthors() {
-  //load/iterate through all authors-with map
+  //load/iterate through all authors using jquery-with map
   //for each button make new id-by author.id?
   //create button for getAuthor here!
   //load in id=authors-data
 }
 
 function getAuthor() {
-  //load author based on id
-  //author name
-  //create button for getBooks here!
+  //load author based on id, using jquery-look at tic tac toe
+  //call prototype here
   //load in id=author-data
 }
 
@@ -46,6 +50,15 @@ function getBooks() {
   //load in id=books-data
 }
 
+function newAuthorForm() {
+  //call Author.newAuthorForm()
+  //load in id=new-author-data
+}
+
+function resetPage() {
+  $('div').text('');
+}
+
 class Author {
 	constructor(obj) {
 		this.id = obj.id
@@ -53,7 +66,7 @@ class Author {
 		this.books = obj.books
 	}
 
-	static newAuthorForm() {
+	static newAuthor() {
     //reread lab for this
     //maybe make new Author form a button and make this a function outside of class
 		return (`
@@ -64,4 +77,10 @@ class Author {
 			</form>
 		`)
 	}
+}
+
+Author.prototype.authorHTML = function() {
+  //author name
+  //create button for getBooks here!
+  //load in id=author-data
 }
