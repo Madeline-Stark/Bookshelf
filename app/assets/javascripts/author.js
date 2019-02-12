@@ -20,10 +20,12 @@ function attachListeners() {
       getBook()
     })
 
-  $('button#newAuthor').on('click', function (event) {
-    event.preventDefault()
-    newAuthorForm()
-  })
+    $('button#newAuthor').on('click', function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      let newAuthorForm = Author.newAuthor();
+      $('#new-author-data').text(newAuthorForm);
+    });
 
   $('button#clear').on('click', function (event) {
     event.preventDefault()
@@ -36,35 +38,24 @@ function getAuthors() {
   //for each button make new id-by author.id?
   //create button for getAuthor here!
   //load in id=authors-data
+  let authorsText = 'all the html'
+  $('#authors-data').text(authorsText);
 }
 
 function getAuthor() {
   //load author based on id, using jquery-look at tic tac toe
   //call prototype here
   //load in id=author-data
+  let authorText = 'all the html'
+  $('#author-data').text(authorText);
 }
 
 function getBooks() {
   //load/iterate through all books-with map
   //access via author id
   //load in id=books-data
-}
-
-function newAuthorForm() {
-  //need script tags?
-  Author.newAuthor();
-  $(function () {
-   $('form').submit(function(event) {
-     //prevent form from submitting the default way
-     event.preventDefault();
-     var values = $(this).serialize();
-     var posting = $.post('/authors', values);
-     posting.done(function(data) {
-        var author = data;
-        $('#new-author-data').text(author["name"]);
-      });
-   });
- });
+  let booksText = 'all the html'
+  $('#books-data').text(booksText);
 }
 
 function resetPage() {
@@ -79,18 +70,14 @@ class Author {
 	}
 
 	static newAuthor() { //static so called on class itself instead of instance
-    //reread lab for forms
+    //displaying literally!
     //check that works to create new author
 		return (`
 		<h2>Create New Author:</h2>
         <%= form_for(@author) do |f| %>
-    <div class="field">
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+        <%= f.submit %>
     <% end %>
 		`)
 	}
