@@ -5,21 +5,11 @@ $(document).ready(function() {
 });
 
 function attachListeners() {
-  $('button#authors').on('click', function (event) {
-  		event.preventDefault()
-  		getAuthors()
-  	})
 
-  $('button#author').on('click', function (event) {
-    	event.preventDefault()
-      //store author id
-    	getAuthor(1)
-    })
+  $('button#authors').on('click', () => getAuthors();
+  $('button#author').on('click', () => getAuthor(); //pass in id?
+  $('button#books').on('click', () => getBook();
 
-  $('button#books').on('click', function (event) {
-      event.preventDefault()
-      getBook()
-    })
 
     $('button#newAuthor').on('click', function(event) {
       //prevent form from submitting the default way
