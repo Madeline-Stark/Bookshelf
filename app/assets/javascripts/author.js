@@ -66,21 +66,22 @@ class Author {
 		this.books = obj.books
 	}
 
-	static newAuthor() {
-    //reread lab for this
-    //maybe make new Author form a button and make this a function outside of class
+	static newAuthor() { //static so called on class itself instead of instance
+    //reread lab for forms
+    //check that works to create new author
 		return (`
-		<strong>New artist form</strong>
+		<h2>Create New Author:</h2>
 			<form>
-				<input id='post-name' type='text' name='name'></input><br>
+				<input id='author-name' type='text' name='name'></input><br>
 				<input type='submit' />
 			</form>
 		`)
 	}
 }
 
-Author.prototype.authorHTML = function() {
-  //author name
+Author.prototype.authorHTML = function() { //prototype to avoid repetition/extra data
+  // author show
+  // author name
   //create button for getBooks here!
   //load in id=author-data
 }
