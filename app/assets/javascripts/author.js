@@ -51,7 +51,7 @@ function getBooks() {
 }
 
 function newAuthorForm() {
-  //need script tags
+  //need script tags?
   Author.newAuthor();
   $(function () {
    $('form').submit(function(event) {

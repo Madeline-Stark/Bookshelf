@@ -3,12 +3,18 @@ class AuthorsController < ApplicationController
   before_action :set_author, only: [:show, :edit, :update]
 
   def show
-    render json: @author, status: 200
+    respond_to do |f|
+			f.html {render :show}
+			f.json {render json: @author }
+		end
   end
 
   def index
     @authors = Author.all
-    render json: @authors, status: 200
+    respond_to do |f|
+			f.html {render :index}
+			f.json {render json: @authors}
+		end
   end
 
   def new
@@ -19,7 +25,10 @@ class AuthorsController < ApplicationController
     @author = Author.new(author_params)
 
     if @author.save
-      render json: @author, status: 201
+      respond_to do |f|
+				f.html {redirect_to author_path}
+				f.json {render json: @author}
+      end
     else
       render :new
     end
