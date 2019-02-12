@@ -59,7 +59,7 @@ function getBooks() {
 }
 
 function resetPage() {
-  $('div').text('');
+  $('.placeholders').text('');
 }
 
 class Author {
