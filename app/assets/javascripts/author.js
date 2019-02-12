@@ -12,7 +12,8 @@ function attachListeners() {
 
   $('button#author').on('click', function (event) {
     	event.preventDefault()
-    	getAuthor()
+      //store author id
+    	getAuthor(1)
     })
 
   $('button#books').on('click', function (event) {
@@ -24,7 +25,7 @@ function attachListeners() {
       //prevent form from submitting the default way
       event.preventDefault();
       let newAuthorForm = Author.newAuthor();
-      $('#new-author-data').text(newAuthorForm);
+      document.querySelector('#new-author-data').innerHTML = newAuthorForm
     });
 
   $('button#clear').on('click', function (event) {
@@ -38,24 +39,24 @@ function getAuthors() {
   //for each button make new id-by author.id?
   //create button for getAuthor here!
   //load in id=authors-data
-  let authorsText = 'all the html'
-  $('#authors-data').text(authorsText);
+  $.get(`/authors`).done( function(data) {
+    console.log(data)
+  });
+  $('#authors-data').text(Author.authorsHTML);
 }
 
-function getAuthor() {
+function getAuthor(authorID) {
   //load author based on id, using jquery-look at tic tac toe
   //call prototype here
   //load in id=author-data
-  let authorText = 'all the html'
-  $('#author-data').text(authorText);
+  $('#author-data').text(author.authorHTML);
 }
 
 function getBooks() {
   //load/iterate through all books-with map
   //access via author id
   //load in id=books-data
-  let booksText = 'all the html'
-  $('#books-data').text(booksText);
+  $('#books-data').text(author.booksHTML);
 }
 
 function resetPage() {
@@ -70,17 +71,23 @@ class Author {
 	}
 
 	static newAuthor() { //static so called on class itself instead of instance
-    //displaying literally!
+    //needs to be plain html, not erb tags in order to display properly
     //check that works to create new author
 		return (`
 		<h2>Create New Author:</h2>
-        <%= form_for(@author) do |f| %>
-        <%= f.label :name %><br>
-        <%= f.text_field :name %>
-        <%= f.submit %>
-    <% end %>
+    <form>
+      <input id='author-name' type='text' name='name'></input><br>
+      <input type='submit' />
+    </form>
 		`)
 	}
+
+  static allAuthors() {
+    return (`
+  			all authors
+        buttons for each author
+  	`)
+  }
 }
 
 Author.prototype.authorHTML = function() { //prototype to avoid repetition/extra data
@@ -88,4 +95,18 @@ Author.prototype.authorHTML = function() { //prototype to avoid repetition/extra
   // author name
   //create button for getBooks here!
   //load in id=author-data
+  return (`
+			<h1>${this.name}</h1>
+      button for books
+	`)
+}
+
+Author.prototype.booksHTML = function() { //prototype to avoid repetition/extra data
+  // author show
+  // author name
+  //create button for getBooks here!
+  //load in id=author-data
+  return (`
+			books
+	`)
 }
