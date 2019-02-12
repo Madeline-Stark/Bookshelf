@@ -5,33 +5,45 @@ $(document).ready(function() {
 });
 
 function attachListeners() {
-  $('button#authors-data').on('click', function (event) {
+  $('button#authors').on('click', function (event) {
   		event.preventDefault()
   		getAuthors()
   	})
 
-  $('button#author-data').on('click', function (event) {
+  $('button#author').on('click', function (event) {
     	event.preventDefault()
     	getAuthor()
     })
 
-  $('button#books-data').on('click', function (event) {
+  $('button#books').on('click', function (event) {
       event.preventDefault()
       getBook()
     })
+
+  $('button#newAuthor').on('click', function (event) {
+    event.preventDefault()
+    newAuthorForm()
+  })
 }
 
 function getAuthors() {
-  //replace link_to with button for authors!
+  //load/iterate through all authors-with map
+  //for each button make new id-by author.id?
   //create button for getAuthor here!
+  //load in id=authors-data
 }
 
 function getAuthor() {
+  //load author based on id
+  //author name
   //create button for getBooks here!
+  //load in id=author-data
 }
 
 function getBooks() {
-
+  //load/iterate through all books-with map
+  //access via author id
+  //load in id=books-data
 }
 
 class Author {
