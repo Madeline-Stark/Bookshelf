@@ -51,8 +51,20 @@ function getBooks() {
 }
 
 function newAuthorForm() {
-  //call Author.newAuthorForm()
-  //load in id=new-author-data
+  //need script tags
+  Author.newAuthor();
+  $(function () {
+   $('form').submit(function(event) {
+     //prevent form from submitting the default way
+     event.preventDefault();
+     var values = $(this).serialize();
+     var posting = $.post('/authors', values);
+     posting.done(function(data) {
+        var author = data;
+        $('#new-author-data').text(author["name"]);
+      });
+   });
+ });
 }
 
 function resetPage() {
@@ -71,10 +83,15 @@ class Author {
     //check that works to create new author
 		return (`
 		<h2>Create New Author:</h2>
-			<form>
-				<input id='author-name' type='text' name='name'></input><br>
-				<input type='submit' />
-			</form>
+        <%= form_for(@author) do |f| %>
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    <% end %>
 		`)
 	}
 }
