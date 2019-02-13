@@ -6,9 +6,9 @@ $(document).ready(function() {
 
 function attachListeners() {
 
-  $('button#authors').on('click', () => getAuthors();
-  $('button#author').on('click', () => getAuthor(); //pass in id?
-  $('button#books').on('click', () => getBook();
+  $('button#authors').on('click', () => getAuthors());
+  $('button#author').on('click', () => getAuthor()); //pass in id?
+  $('button#books').on('click', () => getBook());
 
 
     $('button#newAuthor').on('click', function(event) {
@@ -29,10 +29,10 @@ function getAuthors() {
   //for each button make new id-by author.id?
   //create button for getAuthor here!
   //load in id=authors-data
-  $.get(`/authors`).done( function(data) {
-    console.log(data)
-  });
-  $('#authors-data').text(Author.authorsHTML);
+  $.get('/authors', (authors) => {
+    console.log(authors)
+    $('#authors-data').text(Author.allAuthors());
+  })
 }
 
 function getAuthor(authorID) {
@@ -80,14 +80,14 @@ class Author {
   }
 }
 
-Author.prototype.authorHTML = function() { //prototype to avoid repetition/extra data
+Author.prototype.authorsHTML = function() { //prototype to avoid repetition/extra data
   // author show
   // author name
   //create button for getBooks here!
   //load in id=author-data
   return (`
-			<h1>${this.name}</h1>
-      button for books
+			<h1>${this}</h1>
+      button for single author
 	`)
 }
 
