@@ -96,9 +96,8 @@ class Author {
     let authorDivs = authors.map(author =>{
       console.log(author.name)
       return (`
-         <div>${author.name}</div>
+         <div><button id=${author.id}>${author.name}</button></div>
        `)
-    //<div><button id=${author.id}>${author.name}</button></div>
     })
     return authorDivs;
   }
