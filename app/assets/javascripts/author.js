@@ -6,9 +6,9 @@ $(document).ready(function() {
 
 function attachListeners() {
 
-  $('button#authors').on('click', () => getAuthors());
-  $('button#author').on('click', () => getAuthor()); //pass in id?
-  $('button#books').on('click', () => getBook());
+  $('#authors').on('click', () => getAuthors());
+  $('#author').on('click', () => getAuthor()); //pass in id?
+  $('#books').on('click', () => getBook());
 
 
     $('button#newAuthor').on('click', function(event) {
@@ -29,10 +29,26 @@ function getAuthors() {
   //for each button make new id-by author.id?
   //create button for getAuthor here!
   //load in id=authors-data
+  console.log('boop')
   $.get('/authors', (authors) => {
+    console.log('boppity');
     console.log(authors);
     $('#authors-data').text(Author.allAuthors());
   })
+  // $.ajax({
+	// 	url: 'http://localhost:3000/authors',
+	// 	method: 'get',
+	// 	dataType: 'json',
+	// 	success: function (data) {
+  //     console.log('beep');
+	// 		console.log("the data is: ", data)
+	// 		// data.map(post => {
+	// 		// 	const newPost = new Post(post)
+	// 		// 	const newPostHtml = newPost.postHTML()
+	// 		// 	document.getElementById('ajax-posts').innerHTML += newPostHtml
+	// 		// })
+	// 	}
+	// })
 }
 
 function getAuthor(authorID) {
@@ -103,6 +119,7 @@ Author.prototype.booksHTML = function() { //prototype to avoid repetition/extra 
   // author name
   //create button for getBooks here!
   //load in id=author-data
+  //pass in author id?
   return (`
 			books
 	`)
