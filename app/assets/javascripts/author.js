@@ -30,7 +30,7 @@ function getAuthors() {
   //create button for getAuthor here!
   //load in id=authors-data
   $.get('/authors', (authors) => {
-    console.log(authors)
+    console.log(authors);
     $('#authors-data').text(Author.allAuthors());
   })
 }
@@ -39,14 +39,21 @@ function getAuthor(authorID) {
   //load author based on id, using jquery-look at tic tac toe
   //call prototype here
   //load in id=author-data
-  $('#author-data').text(author.authorHTML);
+  $.get('/author', (author) => {
+    console.log(author);
+    console.log(authorID);
+    $('#author-data').text(author.authorHTML);
+  })
 }
 
 function getBooks() {
   //load/iterate through all books-with map
   //access via author id
   //load in id=books-data
-  $('#books-data').text(author.booksHTML);
+  $.get('/author/books', (author) => {
+    console.log(author);
+    $('#books-data').text(author.booksHTML);
+  })
 }
 
 function resetPage() {
@@ -80,7 +87,7 @@ class Author {
   }
 }
 
-Author.prototype.authorsHTML = function() { //prototype to avoid repetition/extra data
+Author.prototype.authorHTML = function() { //prototype to avoid repetition/extra data
   // author show
   // author name
   //create button for getBooks here!
