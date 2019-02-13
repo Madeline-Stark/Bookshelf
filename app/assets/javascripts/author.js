@@ -34,9 +34,11 @@ function getAuthors() {
   		dataType: 'json',
   		success: function (data) {
   			console.log("the data is: ", data)
-  			data.map(authors => {
-  				$('#authors-data').text(Author.allAuthors(authors));
-  			})
+        const authorsHTML = Author.allAuthors(data);
+        document.getElementById('authors-data').innerHTML += authorsHTML
+  			// data.map(authors => {
+  			// 	$('#authors-data').text(Author.allAuthors(authors));
+  			// })
   		}
   	})
   })
@@ -91,12 +93,14 @@ class Author {
     // for each author
     //could create new js author for each
     console.log(authors)
-    authors.map(author =>{
+    let authorDivs = authors.map(author =>{
+      console.log(author.name)
       return (`
          <div>${author.name}</div>
        `)
     //<div><button id=${author.id}>${author.name}</button></div>
     })
+    return authorDivs;
   }
 }
 
