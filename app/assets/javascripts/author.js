@@ -1,12 +1,12 @@
 
 
-$(document).ready(function() {
+$(function() {
   attachListeners();
 });
 
 function attachListeners() {
 
-  $('#authors').on('click', () => getAuthors());
+   getAuthors();
   $('#author').on('click', () => getAuthor()); //pass in id?
   $('#books').on('click', () => getBook());
 
@@ -14,8 +14,9 @@ function attachListeners() {
     $('button#newAuthor').on('click', function(event) {
       //prevent form from submitting the default way
       event.preventDefault();
-      let newAuthorForm = Author.newAuthor();
+      let newAuthorForm = Author.newAuthorForm();
       document.querySelector('#new-author-data').innerHTML = newAuthorForm
+      //how to post data from here?
     });
 
   $('button#clear').on('click', function (event) {
@@ -25,30 +26,21 @@ function attachListeners() {
 }
 
 function getAuthors() {
-  //load/iterate through all authors using jquery-with map
-  //for each button make new id-by author.id?
-  //create button for getAuthor here!
-  //load in id=authors-data
-  console.log('boop')
-  $.get('/authors', (authors) => {
-    console.log('boppity');
-    console.log(authors);
-    $('#authors-data').text(Author.allAuthors());
+  $('#authors').on('click', function(event) {
+    event.preventDefault();
+    $.ajax({
+  		url: 'http://localhost:3000/authors',
+  		method: 'get',
+  		dataType: 'json',
+  		success: function (data) {
+  			console.log("the data is: ", data)
+  			data.map(authors => {
+  				$('#authors-data').text(Author.allAuthors(authors));
+  			})
+  		}
+  	})
   })
-  // $.ajax({
-	// 	url: 'http://localhost:3000/authors',
-	// 	method: 'get',
-	// 	dataType: 'json',
-	// 	success: function (data) {
-  //     console.log('beep');
-	// 		console.log("the data is: ", data)
-	// 		// data.map(post => {
-	// 		// 	const newPost = new Post(post)
-	// 		// 	const newPostHtml = newPost.postHTML()
-	// 		// 	document.getElementById('ajax-posts').innerHTML += newPostHtml
-	// 		// })
-	// 	}
-	// })
+
 }
 
 function getAuthor(authorID) {
@@ -83,7 +75,7 @@ class Author {
 		this.books = obj.books
 	}
 
-	static newAuthor() { //static so called on class itself instead of instance
+	static newAuthorForm() { //static so called on class itself instead of instance
     //needs to be plain html, not erb tags in order to display properly
     //check that works to create new author
 		return (`
@@ -95,11 +87,16 @@ class Author {
 		`)
 	}
 
-  static allAuthors() {
-    return (`
-  			all authors
-        buttons for each author
-  	`)
+  static allAuthors(authors) {
+    // for each author
+    //could create new js author for each
+    console.log(authors)
+    authors.map(author =>{
+      return (`
+         <div>${author.name}</div>
+       `)
+    //<div><button id=${author.id}>${author.name}</button></div>
+    })
   }
 }
 
@@ -108,6 +105,15 @@ Author.prototype.authorHTML = function() { //prototype to avoid repetition/extra
   // author name
   //create button for getBooks here!
   //load in id=author-data
+  // authors.map(author =>{
+  //   let authorBooks = author.books.map(book=>{
+  //   return(<div>{book.title}</div>)
+  //  })
+  //   return (`
+  //     <div>${author.name}</div>
+  //     ${authorBooks}
+  //   `)
+  // })
   return (`
 			<h1>${this}</h1>
       button for single author
