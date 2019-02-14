@@ -53,10 +53,11 @@ class Author {
 	static newAuthorForm() { //static so called on class itself instead of instance
     //needs to be plain html, not erb tags in order to display properly
     //check that works to create new author
+    resetPage();
 		return (`
 		<h2>Create New Author:</h2>
     <form>
-      <input id='author-name' type='text' name='name'></input><br>
+      Name: <input id='author-name' type='text' name='name'></input><br>
       <input type='submit' />
     </form>
 		`)
@@ -64,11 +65,12 @@ class Author {
 
   static allAuthors(authors) {
     let authorDivs = authors.map(author =>{
-      //map through books to store in plain html
-      //create prototypes for author that you can call in here! and store in variable
-      //will need to create author first and then call author.authorHTML
+
+      let newAuthor = new Author(author);
+      let newAuthorHTML = newAuthor.authorHTML;
+
       return(
-        `<div>${author.name}<div>`
+        `<div>${newAuthorHTML}<div>`
       )
     }).join('') //without join has commas!
     return authorDivs;
@@ -76,14 +78,14 @@ class Author {
 }
 
 Author.prototype.authorHTML = function () {
-	let authorBooks = this.books.map(book => {
-		return (`
-			<li>${book.name}</li>
-		`)
-	}).join('')
+  let authorBooks = this.books.map(book => {
+  	return (`
+  		<li>${book.name}</li>
+  	`)
+  }).join('')
 
-	return (`
-			<h3>${this.name}</h3>
-			<ul>${authorBooks}</ul>
-	`)
+  return (`
+  		<h3>${this.name}</h3>
+  		<ul>${authorBooks}</ul>
+  `)
 }
