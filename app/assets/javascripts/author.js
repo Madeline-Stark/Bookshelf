@@ -93,12 +93,13 @@ class Author {
 Author.prototype.authorHTML = function () {
   let authorBooks = this.books.map(book => {
   	return (`
-  		<li>${book.name}</li>
+  		<li>${book.title}</li>
   	`)
   }).join('')
 
   return (`
   		<h3>${this.name}</h3>
+      <p>Books:</p>
   		<ul>${authorBooks}</ul>
   `)
 }
