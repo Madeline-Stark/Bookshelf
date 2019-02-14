@@ -21,7 +21,6 @@ function attachListeners() {
     resetPage()
   })
 }
-}
 
 function getAuthors() {
   $('#authors').on('click', function(event) {
@@ -65,13 +64,12 @@ class Author {
 
   static allAuthors(authors) {
     let authorDivs = authors.map(author =>{
+      //map through books to store in plain html
       return(
-        `<div><button class=dynamic-button id=author-${author.id}>${author.name}</button><div>`
+        `<div>${author.name}<div>`
       )
     })
     return authorDivs;
     //where are commas coming from?
   }
-}
-
 }
