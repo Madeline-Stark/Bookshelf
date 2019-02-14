@@ -6,22 +6,7 @@ $(document).ready(function() {
 
 function attachListeners() {
 
-  getAuthors();
-
-  //how to attach dynamic button listener when not there at beginning?
-  // $('.dynamic-button').on('click', function(event) {
-  //   event.preventDefault();
-  //   console.log('boop')
-  //   // getAuthor(authorID);
-  // })
-  //when to attach event listener?
-  // document.querySelector('.dynamic-button').addEventListener('click', function(event) {
-  //   console.log('boop')
-  // });
-
-
-  $('#books').on('click', () => getBook());
-
+    getAuthors();
 
     $('button#newAuthor').on('click', function(event) {
       //prevent form from submitting the default way
@@ -36,13 +21,6 @@ function attachListeners() {
     resetPage()
   })
 }
-
-// function listenForAuthorButton() {
-// 	$('.dynamic-button').on('click', function (event) {
-// 		event.preventDefault()
-//     console.log('clicked');
-// 		//getAuthor();
-// 	})
 }
 
 function getAuthors() {
@@ -61,33 +39,6 @@ function getAuthors() {
   })
 }
 
-function getAuthor(authorID) {
-  //load author based on id, using jquery-look at tic tac toe
-  //call prototype here
-  //load in id=author-data
-  console.log(authorID)
-  $.ajax({
-    url: `http://localhost:3000/author/${authorID}`,
-    method: 'get',
-    dataType: 'json',
-    success: function (data) {
-      console.log("the data is: ", data)
-      const authorHTML = authorHTML(data);
-      document.getElementById('author-data').innerHTML = authorHTML;
-    }
-  })
-
-}
-
-function getBooks() {
-  //load/iterate through all books-with map
-  //access via author id
-  //load in id=books-data
-  $.get('/author/books', (author) => {
-    console.log(author);
-    $('#books-data').text(author.booksHTML);
-  })
-}
 
 function resetPage() {
   $('.placeholders').text('');
@@ -123,33 +74,4 @@ class Author {
   }
 }
 
-Author.prototype.authorHTML = function() { //prototype to avoid repetition/extra data
-  // author show
-  // author name
-  //create button for getBooks here!
-  //load in id=author-data
-  // authors.map(author =>{
-  //   let authorBooks = author.books.map(book=>{
-  //   return(<div>{book.title}</div>)
-  //  })
-  //   return (`
-  //     <div>${author.name}</div>
-  //     ${authorBooks}
-  //   `)
-  // })
-  return (`
-			<h1>${this}</h1>
-      button for single author
-	`)
-}
-
-Author.prototype.booksHTML = function() { //prototype to avoid repetition/extra data
-  // author show
-  // author name
-  //create button for getBooks here!
-  //load in id=author-data
-  //pass in author id?
-  return (`
-			books
-	`)
 }
