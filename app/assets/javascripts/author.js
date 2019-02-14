@@ -1,13 +1,25 @@
 
 
-$(function() {
+$(document).ready(function() {
   attachListeners();
 });
 
 function attachListeners() {
 
-   getAuthors();
-  $('#author').on('click', () => getAuthor()); //pass in id?
+  getAuthors();
+
+  //how to attach dynamic button listener when not there at beginning?
+  // $('.dynamic-button').on('click', function(event) {
+  //   event.preventDefault();
+  //   console.log('boop')
+  //   // getAuthor(authorID);
+  // })
+  //when to attach event listener?
+  // document.querySelector('.dynamic-button').addEventListener('click', function(event) {
+  //   console.log('boop')
+  // });
+
+
   $('#books').on('click', () => getBook());
 
 
@@ -25,6 +37,14 @@ function attachListeners() {
   })
 }
 
+// function listenForAuthorButton() {
+// 	$('.dynamic-button').on('click', function (event) {
+// 		event.preventDefault()
+//     console.log('clicked');
+// 		//getAuthor();
+// 	})
+}
+
 function getAuthors() {
   $('#authors').on('click', function(event) {
     event.preventDefault();
@@ -35,25 +55,28 @@ function getAuthors() {
   		success: function (data) {
   			console.log("the data is: ", data)
         const authorsHTML = Author.allAuthors(data);
-        document.getElementById('authors-data').innerHTML += authorsHTML
-  			// data.map(authors => {
-  			// 	$('#authors-data').text(Author.allAuthors(authors));
-  			// })
+        document.getElementById('authors-data').innerHTML = authorsHTML;
   		}
   	})
   })
-
 }
 
 function getAuthor(authorID) {
   //load author based on id, using jquery-look at tic tac toe
   //call prototype here
   //load in id=author-data
-  $.get('/author', (author) => {
-    console.log(author);
-    console.log(authorID);
-    $('#author-data').text(author.authorHTML);
+  console.log(authorID)
+  $.ajax({
+    url: `http://localhost:3000/author/${authorID}`,
+    method: 'get',
+    dataType: 'json',
+    success: function (data) {
+      console.log("the data is: ", data)
+      const authorHTML = authorHTML(data);
+      document.getElementById('author-data').innerHTML = authorHTML;
+    }
   })
+
 }
 
 function getBooks() {
@@ -90,16 +113,13 @@ class Author {
 	}
 
   static allAuthors(authors) {
-    // for each author
-    //could create new js author for each
-    console.log(authors)
     let authorDivs = authors.map(author =>{
-      console.log(author.name)
-      return (`
-         <div><button id=${author.id}>${author.name}</button></div>
-       `)
+      return(
+        `<div><button class=dynamic-button id=author-${author.id}>${author.name}</button><div>`
+      )
     })
     return authorDivs;
+    //where are commas coming from?
   }
 }
 
