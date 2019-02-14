@@ -65,12 +65,8 @@ class Author {
 
   static allAuthors(authors) {
     let authorDivs = authors.map(author =>{
-
-      let newAuthor = new Author(author);
-      let newAuthorHTML = newAuthor.authorHTML;
-
       return(
-        `<div>${newAuthorHTML}<div>`
+        `<div>${author.name}<div>`
       )
     }).join('') //without join has commas!
     return authorDivs;
