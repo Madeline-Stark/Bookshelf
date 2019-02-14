@@ -7,6 +7,7 @@ $(document).ready(function() {
 function attachListeners() {
 
     getAuthors();
+    getAuthor();
 
     $('button#newAuthor').on('click', function(event) {
       //prevent form from submitting the default way
@@ -33,6 +34,22 @@ function getAuthors() {
   			console.log("the data is: ", data)
         const authorsHTML = Author.allAuthors(data);
         document.getElementById('authors-data').innerHTML = authorsHTML;
+  		}
+  	})
+  })
+}
+
+function getAuthor() {
+  $('#author').on('click', function(event) {
+    event.preventDefault();
+    $.ajax({
+  		url: 'http://localhost:3000/authors/1', //+ event.id, //not sure if this is right
+  		method: 'get',
+  		dataType: 'json',
+  		success: function (data) {
+  			console.log("the data is: ", data);
+        let newAuthor = new Author(data);
+        document.getElementById('author-data').innerHTML = newAuthor.authorHTML();
   		}
   	})
   })
