@@ -65,11 +65,25 @@ class Author {
   static allAuthors(authors) {
     let authorDivs = authors.map(author =>{
       //map through books to store in plain html
+      //create prototypes for author that you can call in here! and store in variable
+      //will need to create author first and then call author.authorHTML
       return(
         `<div>${author.name}<div>`
       )
-    })
+    }).join('') //without join has commas!
     return authorDivs;
-    //where are commas coming from?
   }
+}
+
+Author.prototype.authorHTML = function () {
+	let authorBooks = this.books.map(book => {
+		return (`
+			<li>${book.name}</li>
+		`)
+	}).join('')
+
+	return (`
+			<h3>${this.name}</h3>
+			<ul>${authorBooks}</ul>
+	`)
 }
