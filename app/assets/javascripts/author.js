@@ -37,12 +37,12 @@ function getAuthor() {
   $('#author').on('click', function(event) {
     event.preventDefault();
     $.ajax({
-  		url: 'http://localhost:3000/authors/1', //+ event.id, //not sure if this is right
+  		url: location.href,
   		method: 'get',
   		dataType: 'json',
   		success: function (data) {
   			console.log("the data is: ", data);
-        let renderedAuthor = new Author(data);
+        const renderedAuthor = new Author(data);
         document.getElementById('author-data').innerHTML = renderedAuthor.authorHTML();
   		}
   	})
@@ -55,12 +55,12 @@ function newAuthor() {
     $('new-author').submit(function(event) {
       //prevent form from submitting the default way
       event.preventDefault();
-      var values = $(this).serialize();
+      const values = $(this).serialize();
 
-      var posting = $.post('/authors', values);
+      const posting = $.post('/authors', values);
 
       posting.done(function(data) {
-        var author = new Author(data);
+        const author = new Author(data);
       });
     });
   });
@@ -79,7 +79,7 @@ class Author {
 	}
 
   static allAuthors(authors) {
-    let authorDivs = authors.map(author =>{
+    const authorDivs = authors.map(author =>{
       return(
         `<div><a href='authors/${author.id}'>${author.name}</a><div>`
       )
@@ -90,7 +90,7 @@ class Author {
 }
 
 Author.prototype.authorHTML = function () {
-  let authorBooks = this.books.map(book => {
+  const authorBooks = this.books.map(book => {
   	return (`
   		<li><a href='http://localhost:3000/books/${book.id}'>${book.title}</a></li>
   	`)
