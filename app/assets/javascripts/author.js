@@ -49,6 +49,7 @@ function getAuthor() {
   })
 }
 
+
 function newAuthor() {
   $(function () {
     $('new-author').submit(function(event) {
@@ -85,6 +86,7 @@ class Author {
     }).join('') //without join has commas!
     return authorDivs;
   }
+
 }
 
 Author.prototype.authorHTML = function () {
