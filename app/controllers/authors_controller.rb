@@ -26,8 +26,8 @@ class AuthorsController < ApplicationController
 
     if @author.save
       respond_to do |f|
-				f.html {redirect_to author_path}
-				f.json {render json: @author}
+				f.html {redirect_to authors_path}
+				f.json {render json: @author, status: 201}
       end
     else
       render :new

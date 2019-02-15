@@ -48,11 +48,28 @@ function getAuthor() {
   		dataType: 'json',
   		success: function (data) {
   			console.log("the data is: ", data);
-        let newAuthor = new Author(data);
-        document.getElementById('author-data').innerHTML = newAuthor.authorHTML();
+        let renderedAuthor = new Author(data);
+        document.getElementById('author-data').innerHTML = renderedAuthor.authorHTML();
   		}
   	})
   })
+}
+
+function newAuthor() {
+  $(function () {
+    $('new-author').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      var values = $(this).serialize();
+
+      var posting = $.post('/authors', values);
+
+      posting.done(function(data) {
+        var author = new Author(data);
+        $("#authorResult").text(author["name"]);
+      });
+    });
+  });
 }
 
 
@@ -83,7 +100,7 @@ class Author {
   static allAuthors(authors) {
     let authorDivs = authors.map(author =>{
       return(
-        `<div>${author.name}<div>`
+        `<div><a href='authors/${author.id}'>${author.name}</a><div>`
       )
     }).join('') //without join has commas!
     return authorDivs;
