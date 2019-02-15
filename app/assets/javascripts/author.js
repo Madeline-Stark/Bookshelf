@@ -8,14 +8,8 @@ function attachListeners() {
 
     getAuthors();
     getAuthor();
+    newAuthor();
 
-    $('button#newAuthor').on('click', function(event) {
-      //prevent form from submitting the default way
-      event.preventDefault();
-      let newAuthorForm = Author.newAuthorForm();
-      document.querySelector('#new-author-data').innerHTML = newAuthorForm
-      //how to post data from here?
-    });
 
   $('button#clear').on('click', function (event) {
     event.preventDefault()
@@ -66,7 +60,6 @@ function newAuthor() {
 
       posting.done(function(data) {
         var author = new Author(data);
-        $("#authorResult").text(author["name"]);
       });
     });
   });
@@ -82,19 +75,6 @@ class Author {
 		this.id = obj.id
 		this.name = obj.name
 		this.books = obj.books
-	}
-
-	static newAuthorForm() { //static so called on class itself instead of instance
-    //needs to be plain html, not erb tags in order to display properly
-    //check that works to create new author
-    resetPage();
-		return (`
-		<h2>Create New Author:</h2>
-    <form>
-      Name: <input id='author-name' type='text' name='name'></input><br>
-      <input type='submit' />
-    </form>
-		`)
 	}
 
   static allAuthors(authors) {
