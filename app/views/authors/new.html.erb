@@ -1,0 +1,19 @@
+<%= form_for(@author) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      alert("we r hack3rz");
+    });
+  });
+</script>
