@@ -110,7 +110,7 @@ class Author {
 Author.prototype.authorHTML = function () {
   let authorBooks = this.books.map(book => {
   	return (`
-  		<li>${book.title}</li>
+  		<li><a href='http://localhost:3000/books/${book.id}'>${book.title}</a></li>
   	`)
   }).join('')
 
