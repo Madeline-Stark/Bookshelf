@@ -10,11 +10,10 @@ function attachListeners() {
     getAuthor();
     newAuthor();
 
-
-  $('button#clear').on('click', function (event) {
-    event.preventDefault()
-    resetPage()
-  })
+    $('button#clear').on('click', function (event) {
+      event.preventDefault()
+      resetPage()
+    })
 }
 
 function getAuthors() {
@@ -25,7 +24,6 @@ function getAuthors() {
   		method: 'get',
   		dataType: 'json',
   		success: function (data) {
-  			console.log("the data is: ", data)
         const authorsHTML = Author.allAuthors(data);
         document.getElementById('authors-data').innerHTML = authorsHTML;
   		}
@@ -41,7 +39,6 @@ function getAuthor() {
   		method: 'get',
   		dataType: 'json',
   		success: function (data) {
-  			console.log("the data is: ", data);
         const renderedAuthor = new Author(data);
         document.getElementById('author-data').innerHTML = renderedAuthor.authorHTML();
   		}
@@ -53,7 +50,6 @@ function getAuthor() {
 function newAuthor() {
   $(function () {
     $('new-author').submit(function(event) {
-      //prevent form from submitting the default way
       event.preventDefault();
       const values = $(this).serialize();
 
