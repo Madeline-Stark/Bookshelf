@@ -5,7 +5,7 @@ Welcome to Bookshelf! You can use this app to track books you've read and are cu
 
 ## Demo
 
-[Bookshelf: A Ruby on Rails and JavaScript Application](https://youtu.be/ji6Fuu7160M)
+[Bookshelf: A Ruby on Rails and jQuery Application](https://youtu.be/ji6Fuu7160M)
 
 ## Installation
 
@@ -29,6 +29,7 @@ $ thin start --ssl
 
 * Ruby
 * Rails
+* jQuery
 * Omniauth
 
 ## Contributing
