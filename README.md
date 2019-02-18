@@ -29,6 +29,7 @@ $ thin start --ssl
 
 * Ruby
 * Rails
+* jQuery
 * Omniauth
 
 ## Contributing
