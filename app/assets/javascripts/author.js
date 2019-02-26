@@ -48,18 +48,18 @@ function getAuthor() {
 
 
 function newAuthor() {
-  $(function () {
-    $('new-author').submit(function(event) {
+    $('#new-author').submit(function(event) {
+        console.log('event is:', event)
       event.preventDefault();
-      const values = $(this).serialize();
-
-      const posting = $.post('/authors', values);
-
+      console.log(this)
+      const values = $(this).serialize(); //need jquery object in order to access
+      debugger
+      const posting = $.post('/authors', values, null, 'json'); //null is placeholder for success
       posting.done(function(data) {
         const author = new Author(data);
+        document.getElementById('returned-author').innerHTML = `<p> ${author.name} </p>`
       });
     });
-  });
 }
 
 
