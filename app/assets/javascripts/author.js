@@ -9,6 +9,7 @@ function attachListeners() {
     getAuthors();
     getAuthor();
     newAuthor();
+    getSortedAuthors();
 
     $('button#clear').on('click', function (event) {
       event.preventDefault()
@@ -25,6 +26,21 @@ function getAuthors() {
   		dataType: 'json',
   		success: function (data) {
         const authorsHTML = Author.allAuthors(data);
+        document.getElementById('authors-data').innerHTML = authorsHTML;
+  		}
+  	})
+  })
+}
+
+function getSortedAuthors() {
+  $('#sort-authors').on('click', function(event) {
+    event.preventDefault();
+    $.ajax({
+  		url: 'http://localhost:3000/authors',
+  		method: 'get',
+  		dataType: 'json',
+  		success: function (data) {
+        const authorsHTML = Author.sortAuthors(data);
         document.getElementById('authors-data').innerHTML = authorsHTML;
   		}
   	})
@@ -76,6 +92,28 @@ class Author {
 
   static allAuthors(authors) {
     const authorDivs = authors.map(author =>{
+      return(
+        `<div><a href='authors/${author.id}'>${author.name}</a><div>`
+      )
+    }).join('') //without join has commas!
+    return authorDivs;
+  }
+
+  static sortAuthors(authors) {
+    const sortedAuthors = authors.sort(function(a, b) {
+      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+
+  // names must be equal
+  return 0;
+});
+    const authorDivs = sortedAuthors.map(author =>{
       return(
         `<div><a href='authors/${author.id}'>${author.name}</a><div>`
       )
